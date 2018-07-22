@@ -14,6 +14,7 @@ After cloning, do the following things (see https://devmarketer.io/learn/setup-l
   - php artisan key:generate
   - php artisan migrate:fresh
   - php artisan db:seed
+  - npm run dev
   
 - if all goes well, you can start the server
   - php artisan serve
