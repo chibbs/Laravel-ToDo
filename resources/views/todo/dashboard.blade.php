@@ -33,8 +33,8 @@
                 <th></th>
                 <th>Task</th>
                 <th>Due Date</th>
-                <th>Edit</th>
-                <th>delete</th>
+                <th>Action</th>
+                <th></th>
             </tr>
             </thead>
 
@@ -56,12 +56,11 @@
                     </td>
                     <td>{{$todo->todo}}</td>
                     <td>{{$todo->due}}</td>
-                    <td><a class="secondary-content" href="{{url('/todo/'.$todo->id).'/edit'}}"><span class="fas fa-pencil-alt"></span></a></td>
+                    <td><a href="{{action('TodoController@edit', $todo)}}" class="btn btn-warning">Edit</a></td>
                     <td>
-                        <a href="#" class="secondary-content" onclick="event.preventDefault();
-                                                            document.getElementById('delete-form').submit();"><span class="fas fa-trash-alt"></span></a>
-                        <form id="delete-form" action="{{url('/todo/'.$todo->id)}}" method="POST" style="display: none;">
-                                        {{ method_field('DELETE') }}{{ csrf_field() }}
+                        <form id="delete-form" action="{{action('TodoController@destroy', $todo)}}" method="post">@csrf
+                            <input name="_method" type="hidden" value="DELETE">
+                            <button class="btn btn-danger" type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>
