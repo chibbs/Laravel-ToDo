@@ -18,10 +18,11 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    
 </head>
 <body>
     <div id="app">
@@ -38,13 +39,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">ToDo-Liste <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/category/create') }}">Add Category</a>
+                            <a class="nav-link" href="{{ url('/todo') }}">ToDo-Liste</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/todo/create') }}">Add Todo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/category') }}">Add Category</a>
                         </li>
                     </ul>
 
@@ -88,5 +89,6 @@
             </div>
         </main>
     </div>
+                  
 </body>
 </html>
