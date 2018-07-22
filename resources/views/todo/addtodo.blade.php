@@ -33,8 +33,8 @@
                   <label for="category_id" class="col-sm-2 col-form-label">Category</label>
                   <div class="col-sm-6">
                     <select name="category_id" id="category_id" class="form-control" autofocus>
+                      <option value=""></option>
                     @foreach($categories as $category)
-                        <option value="">Keine</option>
                         <option value="{{ $category->id }}">{{ $category->category }}</option>
                     @endforeach
                     </select>
