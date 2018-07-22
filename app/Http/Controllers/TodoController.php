@@ -142,4 +142,12 @@ class TodoController extends Controller
             return back();
         }
     }
+
+    public function updateStatus($id)
+    {
+        $todo = Todo::find($id);
+        $todo->done = !$todo->done; // just swap
+        $todo->update();
+        return redirect()->back()->with('message', 'todo updated');
+    }
 }

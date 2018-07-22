@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::resource('todo', 'TodoController');
 Route::resource('category', 'CategoryController');
+Route::post('todo/{id}/updateStatus','TodoController@updateStatus')->name('updateStatus');
 /*Route::middleware(['auth'])->group(function () {
   
     Route::get('/','TodoController@index');

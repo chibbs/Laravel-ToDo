@@ -11,7 +11,7 @@
             <thead>
             <tr>
                 <th>Category</th>
-                <th></th>
+                <th>Done</th>
                 <th>Task</th>
                 <th>Due Date</th>
                 <th>Action</th>
@@ -29,11 +29,14 @@
                     @endif
                     </td>
                     <td>
+                        <form id="update-status" action="{{action('TodoController@updateStatus', $todo->id)}}" method="post" onChange="this.submit()">@csrf 
+                        <input type="hidden" name="id" value="$todo->id"/>
                     @if(!$todo->done)
                         <input type="checkbox" name="done1">
                     @else
                         <input type="checkbox" name="done1" checked>
                     @endif
+                        </form>
                     </td>
                     <td>{{$todo->todo}}</td>
                     <td>{{$todo->due}}</td>
