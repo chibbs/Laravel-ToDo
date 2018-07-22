@@ -45,7 +45,7 @@
                             <a class="nav-link" href="{{ url('/todo/create') }}">Add Todo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/category') }}">Add Category</a>
+                            <a class="nav-link" href="{{ url('/category') }}">Manage Categories</a>
                         </li>
                     </ul>
 

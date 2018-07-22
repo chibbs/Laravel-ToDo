@@ -4,17 +4,45 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
     /**
+     * only authenticated users may use the application
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
+     * -> get all the todo items for a single user
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        
+        $result = Auth::user()->categories()->get();
+        if(!$result->isEmpty()){
+            //return view('todo.dashboard',['todos'=>$result,'image'=>Auth::user()->userimage]);
+            return view('category.category',['categories'=>$result]);
+        } else {
+            return view('category.category',['categories'=>false]);
+        }
+    }
+
+    /**
+     * validate the form fields and make sure that these fields are not empty
+     */
+    protected function validator(array $request)
+    {
+        return Validator::make($request, [
+            //'todo' => 'required',
+            'category' => 'required'
+        ]);
     }
 
     /**
@@ -24,10 +52,13 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        /*
         //return view('category.addcategory');
         $categories = Category::pluck('category', 'id');
       //return view('admin.processor.create', ['categories' => $categories]);
-      return view('category.addcategory', compact('cat_id'));
+      return view('category.category', compact('category_id'));*/
+      //return view('category.category', compact('category_id'));
+      return back();
     }
 
     /**
@@ -38,7 +69,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->index();
+        /*$this->validator($request->all())->validate();
+        if(Auth::user()->category()->Create($request->all())){
+            return $this->index();
+        }*/
+        $user = Auth::user()->id;
+        $category = new Category;
+        $category->category = $request->category;
+        $category->user_id = $user;
+        $category->save();
+        return back();
     }
 
     /**
@@ -60,7 +100,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('category.editcategory',['category' => $category]);
+        //return view('category.editcategory',['category' => $category]);
+        return back();
     }
 
     /**
@@ -86,6 +127,14 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if($category->delete()){
+            return back();
+        }
+    }
+
+
+    public function createnew(Category $category)
+    {
+        if($category->save()()){
             return back();
         }
     }
