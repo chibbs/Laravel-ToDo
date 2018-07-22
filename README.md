@@ -2,7 +2,7 @@
 
 This is a simple ToDo List written in php and using the framework Laravel.
 
-After cloning, do the following things:
+After cloning, do the following things (see https://devmarketer.io/learn/setup-laravel-project-cloned-github-com/):
 - make sure, you have php, mysql, nodejs (>= 6.0) and npm installed (run php -v, mysql, nodejs -v and npm -v)
 - make sure, you have composer installed (run composer)
 - login to mysql and create a new database
