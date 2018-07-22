@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'ToDo List')
+
 @section('content')
     <h1>ToDo-Liste</h1>
     <div class="row justify-content-center">
