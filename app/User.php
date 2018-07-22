@@ -28,11 +28,20 @@ class User extends Authenticatable
     ];
 
     /*
-    * Get Todo of User
+    * Get Todos of User
     *
     */
     public function todo()
     {
         return $this->hasMany('App\Todo');
+    }
+
+    /*
+    * Get Categories of User
+    *
+    */
+    public function categories()
+    {
+        return $this->hasMany('App\Category');
     }
 }
