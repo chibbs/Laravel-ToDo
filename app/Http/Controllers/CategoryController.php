@@ -62,14 +62,12 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validator($request->all())->validate();
-        //if (!$request->isEmpty()) {
             $user = Auth::user()->id;
             $category = new Category;
             $category->category = $request->category;
             $category->user_id = $user;
 
             $category->save();
-        //}
         return back();
     }
 

@@ -10,12 +10,12 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Category</th>
-                <th>Task</th>
-                <th>Due Date</th>
+                <th>@sortablelink('category.category', 'category')</th>
+                <th>@sortablelink('todo', 'Task')</th>
+                <th>@sortablelink('due', 'Due Date')</th>
                 <th>Action</th>
                 <th></th>
-                <th>Done</th>
+                <th width="80px">Done</th>
             </tr>
             </thead>
 
@@ -52,6 +52,7 @@
             @endforeach
             </tbody>
         </table>
+        {!! $todos->appends(\Request::except('page'))->render() !!}
 
         @else
         <ul class="list-group">

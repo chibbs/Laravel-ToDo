@@ -25,9 +25,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $result = Auth::user()->todo()->get();
+        $result = Auth::user()->todo()->sortable()->paginate(5);
         if(!$result->isEmpty()){
-            //return view('todo.dashboard',['todos'=>$result,'image'=>Auth::user()->userimage]);
             return view('todo.dashboard',['todos'=>$result,'image'=>false]);
         } else {
             return view('todo.dashboard',['todos'=>false,'image'=>false]);
