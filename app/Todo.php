@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Todo extends Model
 {
     protected $table = 'todos';
-    protected $fillable = ['todo','due', 'cat_id','user_id', 'done'];
+    protected $fillable = ['todo','due', 'category_id','user_id', 'done'];
 
 /**
-     * Get the author that wrote the book.
+     * Get the category of that todo.
      */
     public function category()
     {
