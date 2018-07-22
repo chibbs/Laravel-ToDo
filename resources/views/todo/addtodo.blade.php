@@ -31,19 +31,13 @@
     </div>
   </div>
 
-  <!--<div class="form-group">
-    <label for="category" class="col-sm-2 control-label">Category</label>
-    <div class="col-md-5">
-  {{Form::label('cat_id','Category')}}
-    {{ Form::select('cat_id', $category, $todo->cat_id, array('class' => 'form-control') )     }}
-    </div>
-  </div>-->
   <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
-        <label for="category">Category</label>
-        <select name="category" id="category" class="form-control" required autofocus>
-            @foreach($categories as $category)
-            <option value="{{ $category }}">{{ $category }}</option>
-            @endforeach
+        <label for="category_id">Category</label>
+        <select name="category_id" id="category_id" class="form-control" autofocus>
+          @foreach($categories as $category)
+              <option value="">Keine</option>
+              <option value="{{ $category->id }}">{{ $category->category }}</option>
+          @endforeach
         </select>
     </div>
   

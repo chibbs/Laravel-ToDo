@@ -41,6 +41,7 @@ class TodoController extends Controller
     {
         return Validator::make($request, [
             'todo' => 'required',
+            'due' => 'required',
             //'category' => 'required'
         ]);
     }
@@ -52,7 +53,12 @@ class TodoController extends Controller
      */
     public function create()
     {
-        return view('todo.addtodo');
+        $result = Auth::user()->categories()->get();
+        if(!$result->isEmpty()){
+            return view('todo.addtodo', ['categories'=>$result]);
+        } else {
+            return view('todo.addtodo',['categories'=>false]);
+        }
     }
 
     /**
@@ -91,7 +97,12 @@ class TodoController extends Controller
      */
     public function edit(Todo $todo)
     {
-        return view('todo.edittodo',['todo' => $todo]);
+        $result = Auth::user()->categories()->get();
+        if(!$result->isEmpty()){
+            return view('todo.edittodo',['todo' => $todo, 'categories'=>$result]);
+        } else {
+            return view('todo.edittodo',['todo' => $todo, 'categories'=>false]);
+        }
         
     }
 
@@ -106,9 +117,13 @@ class TodoController extends Controller
     public function update(Request $request, Todo $todo)
     {
         $this->validator($request->all())->validate();
+        $cat = $todo->category()->get();
         if($todo->fill($request->all())->save()){
             return $this->show($todo);
         }
+        /*if($cat->todo()->associate($todo)) {
+            return $this->show($todo);
+        }*/
     }
 
     /**
