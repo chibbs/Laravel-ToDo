@@ -20,3 +20,16 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+import $ from 'jquery';
+window.$ = window.jQuery = $;
+
+import 'jquery-ui/ui/widgets/datepicker.js';
+
+//$('.datepicker').datepicker();
+$('#due').datepicker({ 
+    autoclose: true,   
+    // Formats
+    dateFormat: 'yy/mm/dd',
+    hiddenName: 'due',
+});
