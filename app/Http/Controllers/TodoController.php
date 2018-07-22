@@ -41,7 +41,7 @@ class TodoController extends Controller
     {
         return Validator::make($request, [
             'todo' => 'required',
-            'due' => 'required',
+            //'due' => 'required',
             //'category' => 'required'
         ]);
     }

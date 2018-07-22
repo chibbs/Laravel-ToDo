@@ -16,7 +16,7 @@ class CreateTodosTable extends Migration
         Schema::create('todos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('todo');
-            $table->date('due');
+            $table->date('due')->nullable();
             $table->integer('category_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned();
             $table->boolean('done')->default(false);
