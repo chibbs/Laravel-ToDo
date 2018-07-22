@@ -26,8 +26,7 @@ class CategoryController extends Controller
     public function index()
     {
         $result = Auth::user()->categories()->get();
-        if(!$result->isEmpty()){
-            //return view('todo.dashboard',['todos'=>$result,'image'=>Auth::user()->userimage]);
+        if(!$result->isEmpty()){;
             return view('category.category',['categories'=>$result]);
         } else {
             return view('category.category',['categories'=>false]);
@@ -40,7 +39,6 @@ class CategoryController extends Controller
     protected function validator(array $request)
     {
         return Validator::make($request, [
-            //'todo' => 'required',
             'category' => 'required'
         ]);
     }
@@ -52,12 +50,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        /*
-        //return view('category.addcategory');
-        $categories = Category::pluck('category', 'id');
-      //return view('admin.processor.create', ['categories' => $categories]);
-      return view('category.category', compact('category_id'));*/
-      //return view('category.category', compact('category_id'));
       return back();
     }
 
@@ -69,15 +61,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        /*$this->validator($request->all())->validate();
-        if(Auth::user()->category()->Create($request->all())){
-            return $this->index();
-        }*/
-        $user = Auth::user()->id;
-        $category = new Category;
-        $category->category = $request->category;
-        $category->user_id = $user;
-        $category->save();
+        $this->validator($request->all())->validate();
+        if (!$request->isEmpty()) {
+            $user = Auth::user()->id;
+            $category = new Category;
+            $category->category = $request->category;
+            $category->user_id = $user;
+
+            $category->save();
+        }
         return back();
     }
 
@@ -127,14 +119,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if($category->delete()){
-            return back();
-        }
-    }
-
-
-    public function createnew(Category $category)
-    {
-        if($category->save()()){
             return back();
         }
     }
