@@ -98,10 +98,12 @@ class TodoController extends Controller
     public function edit(Todo $todo)
     {
         $result = Auth::user()->categories()->get();
+        $result2 = $todo->category()->get();
+        $cat = ($result2->isEmpty()) ? "" : $result2[0]->category;
         if(!$result->isEmpty()){
-            return view('todo.edittodo',['todo' => $todo, 'categories'=>$result]);
+            return view('todo.edittodo',['todo' => $todo, 'cat' => $cat, 'categories'=>$result]);
         } else {
-            return view('todo.edittodo',['todo' => $todo, 'categories'=>false]);
+            return view('todo.edittodo',['todo' => $todo, 'cat' => $cat, 'categories'=>false]);
         }
         
     }
@@ -119,7 +121,8 @@ class TodoController extends Controller
         $this->validator($request->all())->validate();
         $cat = $todo->category()->get();
         if($todo->fill($request->all())->save()){
-            return $this->show($todo);
+            //return $this->show($todo);
+            return redirect('todo')->with('success', 'Information has been added');
         }
         /*if($cat->todo()->associate($todo)) {
             return $this->show($todo);
